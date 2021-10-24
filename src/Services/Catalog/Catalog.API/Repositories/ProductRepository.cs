@@ -43,7 +43,7 @@ namespace Catalog.API.Repositories
 
             return await _context
                             .Products
-                            .Find(p=>p.Name==categoryName)
+                            .Find(filter)
                             .ToListAsync();
         }
 
