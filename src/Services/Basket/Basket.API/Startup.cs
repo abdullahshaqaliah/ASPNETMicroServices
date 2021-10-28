@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 using Basket.API.Repositories;
+using Basket.API.GrpcServices;
+using Discount.Grpc.Protos;
 
 namespace Basket.API
 {
@@ -38,6 +40,11 @@ namespace Basket.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" });
             });
             services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddScoped<DiscountGrpcService>();
+            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o =>
+            {
+                o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
+            });
 
         }
 

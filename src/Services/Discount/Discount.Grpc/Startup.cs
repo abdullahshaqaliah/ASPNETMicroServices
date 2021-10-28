@@ -20,6 +20,7 @@ namespace Discount.Grpc
         {
             services.AddGrpc();
             services.AddScoped<IDiscountRepository, DiscountRepository>();
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
