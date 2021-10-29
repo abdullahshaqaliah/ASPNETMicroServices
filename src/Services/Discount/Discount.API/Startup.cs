@@ -28,7 +28,6 @@ namespace Discount.API
         {
 
             services.AddControllers();
-            services.AddAutoMapper(typeof(Startup));
 
             services.AddSwaggerGen(c =>
             {
