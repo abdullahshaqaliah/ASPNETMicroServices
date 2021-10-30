@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Ordering.Domain</RootNamespace>
-    <AssemblyName>Ordering.Domain</AssemblyName>
   </PropertyGroup>
 
 </Project>

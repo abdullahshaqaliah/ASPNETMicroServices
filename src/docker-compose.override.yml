@@ -37,6 +37,12 @@ services:
     ports:
         - "1432:1433"
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
 
   pgadmin:
     container_name: pgadmin
@@ -97,4 +103,16 @@ services:
       - "ConnectionStrings:DefaultConnection=Server=host.docker.internal\\SQLEXPRESS,1433;UID=sa;PWD=123456;Database=DiscountDb"
     ports:
       - "8003:80"
+
+
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678"  
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+        - orderdb
+    ports:
+        - "8004:80"
 
