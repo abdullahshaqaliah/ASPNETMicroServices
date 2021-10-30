@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ordeing.Domain.Common
+namespace Ordering.Domain.Common
 {
     public abstract class EntityBase
     {
