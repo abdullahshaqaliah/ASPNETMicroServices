@@ -14,6 +14,7 @@ using StackExchange.Redis;
 using Basket.API.Repositories;
 using Basket.API.GrpcServices;
 using Discount.Grpc.Protos;
+using MassTransit;
 
 namespace Basket.API
 {
@@ -45,6 +46,14 @@ namespace Basket.API
             {
                 o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
             });
+
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config => {
+                config.UsingRabbitMq((ctx, cfg) => {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+            services.AddMassTransitHostedService();
 
         }
 
