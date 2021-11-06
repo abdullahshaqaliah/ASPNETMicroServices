@@ -39,7 +39,7 @@ namespace Discount.API.Controllers
         }
 
 
-        [Route("[action]/{productName}")]
+        [Route("{productName}")]
         [HttpGet]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<Coupon> GetDiscount(string productName)
